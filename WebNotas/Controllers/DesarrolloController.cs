@@ -4,30 +4,28 @@ using WebNotas.Models;
 
 namespace WebNotas.Controllers
 {
-    public class HomeController : Controller
+    public class DesarrolloController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
-            return View();
+            return View("Folleto");
         }
-
-        public IActionResult Autor()
+        public IActionResult Folleto()
         {
             return View();
         }
-        public IActionResult SitioIsp20()
+        public IActionResult Primero()
         {
             return View();
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Segundo()
+        {
+            return View();
+        }
+        public IActionResult Tercero()
+        {
+            return View();
+        }
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

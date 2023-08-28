@@ -1,17 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using WebNotas.Models;
 
-var builder = WebApplication.CreateBuilder(args);
+var webAppSitio = WebApplication.CreateBuilder(args);
 
-var Configuration = new ConfigurationBuilder()
+var configuration = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json")
         .Build();
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<WebNotasContext>(options =>
-    options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),ServerVersion.AutoDetect(Configuration.GetConnectionString("DefaultConnection"))));
 
-var app = builder.Build();
+webAppSitio.Services.AddControllersWithViews();
+webAppSitio.Services.AddDbContext<WebNotasContext>(options =>
+    options.UseMySql(configuration.GetConnectionString("DefaultConnection"),ServerVersion.AutoDetect(configuration.GetConnectionString("DefaultConnection"))));
+
+var app = webAppSitio.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -22,6 +23,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//habilitamos la lectura de los archivos que están en la carpeta wwwroot del proyecto
 app.UseStaticFiles();
 
 app.UseRouting();
