@@ -55,7 +55,7 @@ namespace WebNotas.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Contenido")] Nota nota)
+        public async Task<IActionResult> Create([Bind("Id,Titulo,Contenido,Imagen")] Nota nota)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace WebNotas.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Contenido")] Nota nota)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Titulo,Contenido,Imagen")] Nota nota)
         {
             if (id != nota.Id)
             {
