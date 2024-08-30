@@ -8,11 +8,16 @@ var configuration = new ConfigurationBuilder()
         .AddJsonFile("appsettings.json")
         .Build();
 // Add services to the container.
+string cadenaConexion = configuration.GetConnectionString("RemoteConnection");
 
 webAppSitio.Services.AddControllersWithViews();
 webAppSitio.Services.AddDbContext<WebNotasContext>(options =>
-    options.UseMySql(configuration.GetConnectionString("RemoteConnection"),ServerVersion.AutoDetect(configuration.GetConnectionString("RemoteConnection"))));
-
+    options.UseMySql(cadenaConexion, ServerVersion.AutoDetect(cadenaConexion),
+                    options => options.EnableRetryOnFailure(
+                                        maxRetryCount: 5,
+                                        maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                                       errorNumbersToAdd: null)
+                                ));
 
 webAppSitio.Services.AddSwaggerGen(c =>
 {
